@@ -23,6 +23,8 @@ def load_data(train_img_path, train_key_path):
     )
 
     total_df = pd.read_csv(train_key_path)
+    total_df = total_df.fillna(0)
+
     train_key, valid_key = train_test_split(total_df[:10000], test_size = 0.2, random_state = 42)
 
     trainset = KeypointDataset(train_img_path, train_key, transforms)
