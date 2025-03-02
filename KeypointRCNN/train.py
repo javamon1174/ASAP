@@ -39,7 +39,17 @@ def evaluate(model, test_loader, device = 'cuda'):
     return test_loss
 
 def train_model(train_loader, val_loader, num_epochs = 30, device= 'cuda'):
-    model = get_model()
+    model_path = '/content/drive/MyDrive/models/RCNN.pt'
+    
+    # 기존 모델이 있으면 로드, 없으면 새 모델 생성
+    if os.path.exists(model_path):
+        print("✅ 기존 모델을 불러옵니다...")
+        model = torch.load(model_path, map_location=device)
+    else:
+        print("🆕 새 모델을 생성합니다...")
+        model = get_model()
+    # model = get_model()
+    
     model.to(device)
     
     best_loss = 999999  # initialize best loss
@@ -70,10 +80,10 @@ def main():
     DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
 
     train_img_path = '../images/images_1'
-    train_key_path = '../data/annotations_1.csv'
+    train_key_path = '/content/drive/MyDrive/annotations_1.csv'
 
     train_loader, valid_loader = load_data(train_img_path, train_key_path)
-    train_model(train_loader, valid_loader, num_epochs = 5, device = DEVICE) 
+    train_model(train_loader, valid_loader, num_epochs = 10, device = DEVICE) 
     '''
     default: epoch - 30, 
              device - cuda
