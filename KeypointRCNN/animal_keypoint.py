@@ -29,7 +29,22 @@ class KeypointDataset(Dataset):
         x1, y1 = min(keypoints[:, 0]), min(keypoints[:, 1])
         x2, y2 = max(keypoints[:, 0]), max(keypoints[:, 1])
         
-        boxes = np.array([[x1, y1, x2, y2]], dtype=np.int64)
+        # 키포인트 중 0이 아닌 값만 필터링 (유효한 키포인트만 고려)
+        valid_keypoints = keypoints[(keypoints[:, 0] > 0) & (keypoints[:, 1] > 0)]
+
+        # 유효한 키포인트가 있는 경우에만 바운딩 박스 생성
+        if len(valid_keypoints) > 0:
+            x1, y1 = np.min(valid_keypoints[:, 0]), np.min(valid_keypoints[:, 1])
+            x2, y2 = np.max(valid_keypoints[:, 0]), np.max(valid_keypoints[:, 1])
+            # 바운딩 박스 크기 보정 (너비와 높이가 최소한 1 이상이 되도록)
+            if x1 == x2:
+                x2 += 1
+            if y1 == y2:
+                y2 += 1
+            boxes = np.array([[x1, y1, x2, y2]], dtype=np.int64)
+        else:
+            # 유효한 키포인트가 없으면 바운딩 박스를 [0, 0, 1, 1]로 설정 (임의의 작은 값)
+            boxes = np.array([[0, 0, 1, 1]], dtype=np.int64)
 
         image = cv2.imread(os.path.join(self.image_dir, image_id), cv2.COLOR_BGR2RGB)
 
