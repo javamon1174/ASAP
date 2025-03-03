@@ -1,7 +1,7 @@
 import os
 import cv2
 import numpy as np
-import pandas as ps
+import pandas as pd
 from typing import Tuple, Sequence, Callable, Dict
 
 import torch
