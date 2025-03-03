@@ -492,7 +492,8 @@ def get_pose_net(cfg, is_train, **kwargs):
 
 def model_define(yaml_path, train=True):
   with open(yaml_path) as f:
-    cfg = yaml.load(f)
+    # cfg = yaml.load(f)
+    cfg = yaml.load(f, Loader=yaml.SafeLoader)  # ✅ 수정
 
   model = get_pose_net(cfg, train)
   return model
