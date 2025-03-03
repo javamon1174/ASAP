@@ -219,7 +219,8 @@ def train(cfg, meta_info_dir, train_img_path, train_tfms=None, valid_tfms=None):
   return best_model
 
 def main():
-    meta_info_dir = '../data/annotations_1.csv'
+    meta_info_dir = '/content/drive/MyDrive/annotations_1.csv'
+    #meta_info_dir = '../data/annotations_1.csv'
     train_img_path = '../images/images_1'
 
     train_tfms = A.Compose([
