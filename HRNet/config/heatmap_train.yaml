@@ -2,7 +2,7 @@ MODEL:
   INIT_WEIGHTS: true
   NAME: pose_hrnet
   NUM_JOINTS: 17
-  PRETRAINED: './pretrain/pose_hrnet_w48_384x288.pth'
+  PRETRAINED: '/content/drive/MyDrive/models/pose_hrnet_w48_384x288.pth'
   TARGET_TYPE: gaussian
   EXTRA:
     PRETRAINED_LAYERS:
