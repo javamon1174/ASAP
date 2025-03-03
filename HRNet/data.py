@@ -55,6 +55,28 @@ class AnimalKeypoint(Dataset):
         xmin = np.min(keypoints[:, 0])
         xmax = np.max(keypoints[:, 0])
         width = xmax - xmin if xmax > xmin else 20
+
+        if np.isnan(width):  # 추가
+            width = 1
+        center = (xmin + xmax)/2.
+
+        if np.isnan(center):  # 추가
+            center = 0
+        xmin = int(center - width/2.*1.2)
+        xmax = int(center + width/2.*1.2)
+        ymin = np.min(keypoints[:, 1])
+        ymax = np.max(keypoints[:, 1])
+        height = ymax - ymin if ymax > ymin else 20
+
+        if np.isnan(height):  # 추가
+            height = 1
+        center = (ymin + ymax)/2.
+        ymin = int(center - height/2.*1.2)
+        ymax = int(center + height/2.*1.2)
+        ''' 이전 코드
+        xmin = np.min(keypoints[:, 0])
+        xmax = np.max(keypoints[:, 0])
+        width = xmax - xmin if xmax > xmin else 20
         center = (xmin + xmax)/2.
         xmin = int(center - width/2.*1.2)
         xmax = int(center + width/2.*1.2)
@@ -65,7 +87,7 @@ class AnimalKeypoint(Dataset):
         center = (ymin + ymax)/2.
         ymin = int(center - height/2.*1.2)
         ymax = int(center + height/2.*1.2)
-        
+        '''
 
         x, y, w, h = xmin, ymin, xmax-xmin, ymax-ymin
         aspect_ratio = self.image_size[1] / self.image_size[0]
