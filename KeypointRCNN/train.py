@@ -63,7 +63,8 @@ def train_model(train_loader, val_loader, num_epochs = 30, device= 'cuda'):
 
         if val_loss <= best_loss:   # update best loss
           best_loss = val_loss
-          torch.save(model, '../models/RCNN_ep'+str(epoch)+'_'+str(best_loss)+'.pt')
+          torch.save(model, model_path)
+          # torch.save(model, '../models/RCNN_ep'+str(epoch)+'_'+str(best_loss)+'.pt')
           print('Best Model Saved, Loss: ', val_loss)
         
         time_elapsed = time.time()-since
