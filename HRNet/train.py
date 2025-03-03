@@ -40,7 +40,9 @@ def train(cfg, meta_info_dir, train_img_path, train_tfms=None, valid_tfms=None):
   elif cfg.target_type=='gaussian':
     yaml_name = "./config/heatmap_train.yaml"
 
-  yaml_path = os.path.join(cfg.main_dir, yaml_name)
+  yaml_path = '/content/ASAP/HRNet/config/heatmap_train.yaml'  # 추가
+  #yaml_path = os.path.join(cfg.main_dir, yaml_name)
+    
   model = model_define(yaml_path, cfg.init_training)
   model = model.to(device)
 
