@@ -120,7 +120,7 @@ def get_confidence():
     DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
 
     # 데이터 로드
-    train_img_path = '../images/images_1'
+    train_img_path = '/content/drive/MyDrive/images/images_1'
     train_key_path = '/content/drive/MyDrive/annotations_1.csv'
     _, valid_loader = load_data(train_img_path, train_key_path)  # 검증 데이터 로드
 
@@ -145,7 +145,7 @@ def main():
     
     DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
 
-    train_img_path = '../images/images_1'
+    train_img_path = '/content/drive/MyDrive/images/images_1'
     train_key_path = '/content/drive/MyDrive/annotations_1.csv'
 
     train_loader, valid_loader = load_data(train_img_path, train_key_path)
