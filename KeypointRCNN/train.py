@@ -149,7 +149,7 @@ def main():
     train_key_path = '/content/drive/MyDrive/annotations_1.csv'
 
     train_loader, valid_loader = load_data(train_img_path, train_key_path)
-    train_model(train_loader, valid_loader, num_epochs = 10, device = DEVICE) 
+    train_model(train_loader, valid_loader, num_epochs = 5, device = DEVICE) 
     '''
     default: epoch - 30, 
              device - cuda
